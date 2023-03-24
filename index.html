@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/Style/style.css" />
+  <title>QRLIT-Generate QR for your links</title>
+</head>
+
+<body>
+
+  <h1>QrEaTe</h1>
+
+  <div class="input">
+    <h3>Enter Your URL</h3>
+    <input type="text" id="qrText" placeholder="Paste here" />
+    <button onclick="generateQR()">Generate</button>
+  </div>
+
+  <button id="download-btn">Download</button>
+
+  <div id="imgBox">
+    <p style="color: #20262E; font-size: 25px; margin-top: 20px; display: block; text-align: center;">Your QR code will
+      appear here</p>
+    <img src="/Images/Spin-animation.svg" alt="" class="load">
+    <img src="" id="qrImage" style="height: 300px;">
+  </div>
+
+  <div class="main-about">
+    <div class="about">
+      <p>
+        Welcome to QReate, the easiest and fastest way to
+        generate QR codes online! Our website allows you to create custom QR
+        codes for your website, blog, social media profiles, or any other URL
+        you want to share. Simply enter your link, and we'll generate a unique
+        QR code that you can download and share.
+        <br />
+        Thank you for choosing QReate for all your QR code needs.
+        We're excited to help you share your content with the world, and we
+        look forward to seeing what you create!
+      </p>
+    </div>
+  </div>
+
+  <div class="media">
+    <div class="in">
+      <a href="https://github.com/mukundsolanki" target="_blank">
+        <img src="/Images/Github-icon-social.svg" alt="">
+      </a>
+
+      <a href="https://www.linkedin.com/in/mukund-solanki-10a558250/" target="_blank">
+        <img src="/Images/Linkedin-icon-social.svg" alt="">
+      </a>
+      <p style="color: white; ">©Mukund Solanki</p>
+
+      
+      <script>
+
+        let imgBox = document.getElementById("imgBox");
+        let qrImage = document.getElementById("qrImage");
+        let qrText = document.getElementById("qrText");
+
+        function generateQR() {
+          qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+        }
+
+        var downloadBtn = document.getElementById("download-btn");
+        downloadBtn.addEventListener("click", function () {
+          var imageSrc = qrImage.src;
+          var downloadLink = document.createElement("a");
+          downloadLink.href = imageSrc;
+          downloadLink.download = "myqrcode.png";
+          downloadLink.click();
+        });
+
+      </script>
+
+</body>
+
+</html>
